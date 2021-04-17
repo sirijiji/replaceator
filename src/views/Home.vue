@@ -4,7 +4,7 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
 
 
-<div class="header">
+<div class="header bg-blend-hard-light text-5xl h-20 shadow-md" >
   <h2>Replaceator</h2>
 </div>
 
@@ -30,17 +30,17 @@
     </div>
   </div>
 
-  <div class="column bg-purple-400">
+  <div class="column bg-blue-200">
 
 <div class="row">
 Result below:
 </div>
 
-<div class="row pt-4">
-  <p class="text-lg" >
-<input type="text" class="bg-pink-50" v-model="myData.resultTemplate" disabled="true" />
+<div class="row">
 
-  </p>
+<textarea type="text" class="bg-pink-50" style="width: 100%" v-model="myData.resultTemplate" disabled="true" />
+
+
 </div>
 
   </div>
@@ -75,12 +75,18 @@ myData: {inputvalue: string;
 
 computeValues(){
   const valuescsv = this.myData.inputvalue;
-  const templateValuescsv = this.myData.inputTemplate;
+  let templateValuescsv = this.myData.inputTemplate;
 
-  console.log(valuescsv);
-  console.log(templateValuescsv);
+  if(valuescsv){
+      const splittedVals = valuescsv.split(';');
 
-  this.myData.resultTemplate=valuescsv + templateValuescsv;
+      splittedVals.forEach( (val, index) => {
+      templateValuescsv = templateValuescsv.replace('$'+index, val);
+      })
+
+  }
+
+  this.myData.resultTemplate=templateValuescsv;
 
 }
 
