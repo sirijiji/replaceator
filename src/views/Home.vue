@@ -13,19 +13,19 @@
     <div class="row">
       Place input values as csv:
     </div>
-    <div class="row">
-      <textarea type="text" style="width: 100%" v-model="myData.inputvalue"/>
+    <div class="row mt-6">
+      <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputvalue"/>
     </div>
   </div>
 
   <div class="column bg-green-400">
     <div class="row">
-      Place template text with arguments specified as 
+      Place template text with arguments specified as $0 as first element, $1 as second element etc..
     </div>
     <div class="row">
-      <textarea type="text" style="width: 100%" v-model="myData.inputTemplate"/>
+      <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputTemplate"/>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-6">
       <button type="button" class="bg-gray-200" v-on:click="computeValues()">transform</button>
     </div>
   </div>
@@ -36,9 +36,9 @@
 Result below:
 </div>
 
-<div class="row">
+<div class="row mt-6">
 
-<textarea type="text" class="bg-pink-50" style="width: 100%" v-model="myData.resultTemplate" disabled="true" />
+<textarea type="text" class="bg-pink-50" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.resultTemplate" disabled="true" />
 
 
 </div>
@@ -47,7 +47,7 @@ Result below:
 </div>
 
 <div class="footer">
-  <p>Footer</p>
+  <p>Alexandre boungnarith</p>
 </div>
 
 
