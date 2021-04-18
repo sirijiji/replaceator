@@ -26,7 +26,7 @@
       <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputTemplate"/>
     </div>
     <div class="row mt-6">
-      <button type="button" class="bg-gray-200 border-gray-900 border-2" v-on:click="computeValues()">transform</button>
+      <button type="button" class="bg-gray-200 border-gray-900 border-2" v-on:click="computeValues()">replace</button>
     </div>
   </div>
 
@@ -60,7 +60,7 @@ import { Component,  Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
-    // HelloWorld,
+    
   },
 })
 export default class Home extends Vue {
