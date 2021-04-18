@@ -26,7 +26,7 @@
       <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputTemplate"/>
     </div>
     <div class="row mt-6">
-      <button type="button" class="bg-gray-200" v-on:click="computeValues()">transform</button>
+      <button type="button" class="bg-gray-200 border-gray-900 border-2" v-on:click="computeValues()">transform</button>
     </div>
   </div>
 
@@ -68,25 +68,31 @@ export default class Home extends Vue {
 myData: {inputvalue: string;
         inputTemplate: string;
         resultTemplate: string;
-        } = {inputvalue : 'values', 
-        inputTemplate : 'template', 
+        } = {inputvalue : 'test1;test2;test3\ntest4;test5;test6', 
+        inputTemplate : 'je vois $0,et vois $1, puis le $2', 
         resultTemplate:''}
 
 
 computeValues(){
   const valuescsv = this.myData.inputvalue;
-  let templateValuescsv = this.myData.inputTemplate;
+  const templateValuescsv = this.myData.inputTemplate;
 
   if(valuescsv){
-      const splittedVals = valuescsv.split(';');
-
-      splittedVals.forEach( (val, index) => {
-      templateValuescsv = templateValuescsv.replace('$'+index, val);
+    
+      let comptutedtemplateWithArg = '';
+        valuescsv.split('\n').forEach(line => {
+        let templateComputed = templateValuescsv;
+        const splittedVals = line.split(';');
+        
+        splittedVals.forEach( (val, index) => {
+          templateComputed = templateComputed.replace('$'+index, val);
+        })
+        comptutedtemplateWithArg += templateComputed+'\n';
       })
-
+    this.myData.resultTemplate=comptutedtemplateWithArg;
   }
 
-  this.myData.resultTemplate=templateValuescsv;
+  
 
 }
 
