@@ -13,20 +13,22 @@
     <div class="row">
       Place input values as csv:
     </div>
-    <div class="row mt-6">
+  <div class="row">'$0;$1;$2' etc..</div>
+    <div class="row">
       <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputvalue"/>
     </div>
   </div>
 
   <div class="column bg-green-400">
     <div class="row">
-      Place template text with arguments specified as $0 as first element, $1 as second element etc..
+      Place template text with arguments specified as 
     </div>
+    <div class="row">$0 as first element, $1 as second element etc..</div>
     <div class="row">
       <textarea type="text" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.inputTemplate"/>
     </div>
     <div class="row mt-6">
-      <button type="button" class="bg-gray-200 border-gray-900 border-2" v-on:click="computeValues()">replace</button>
+      <button type="button" class="rounded-full bg-indigo-200 hover:bg-indigo-100 border-gray-900 border-2 pl-2 pr-2 pt-2 pb-2" v-on:click="computeValues()">replace</button>
     </div>
   </div>
 
@@ -37,12 +39,12 @@ Result below:
 </div>
 
 <div class="row mt-6">
-
-<textarea type="text" class="bg-pink-50" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.resultTemplate" disabled="true" />
-
-
+<input id="resultTemplate" type="text" class="bg-pink-50" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.resultTemplate" disabled="true" />
 </div>
 
+ <div class="row mt-6">
+      <button type="button" class="rounded-full bg-indigo-200 hover:bg-indigo-100 border-gray-900 border-2 pl-2 pr-2 pt-2 pb-2" v-on:click="copyToClipboard()">copy to clipboard</button>
+    </div>
   </div>
 </div>
 
@@ -69,7 +71,7 @@ myData: {inputvalue: string;
         inputTemplate: string;
         resultTemplate: string;
         } = {inputvalue : 'test1;test2;test3\ntest4;test5;test6', 
-        inputTemplate : 'je vois $0,et vois $1, puis le $2', 
+        inputTemplate : 'first item is $0, second item is $1, last item is $2', 
         resultTemplate:''}
 
 
@@ -91,14 +93,14 @@ computeValues(){
       })
     this.myData.resultTemplate=comptutedtemplateWithArg;
   }
-
-  
-
 }
 
+copyToClipboard(){    
+  if(this.myData.resultTemplate){
+    navigator.clipboard.writeText(this.myData.resultTemplate);
+  }
 
-
-
+}
 }
 </script>
 <style>
