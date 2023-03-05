@@ -39,7 +39,10 @@ Result below:
 </div>
 
 <div class="row mt-6">
-<input id="resultTemplate" type="text" class="bg-pink-50" style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" v-model="myData.resultTemplate" disabled="true" />
+<input id="resultTemplate" type="text" class="bg-pink-50" 
+style="width: 100%; margin-top: 0px; margin-bottom: 0px; height: 205px;" 
+v-model="myData.resultTemplate" disabled="true" />
+
 </div>
 
  <div class="row mt-6">
@@ -58,7 +61,7 @@ Result below:
 
 <script lang="ts">
 import { Component,  Vue } from 'vue-property-decorator';
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+
 
 @Component({
   components: {
@@ -69,10 +72,11 @@ export default class Home extends Vue {
 
 myData: {inputvalue: string;
         inputTemplate: string;
-        resultTemplate: string;
+        resultTemplate: Array<string>;
         } = {inputvalue : 'test1;test2;test3\ntest4;test5;test6', 
         inputTemplate : 'first item is $0, second item is $1, last item is $2', 
-        resultTemplate:''}
+        resultTemplate: []
+        }
 
 
 computeValues(){
@@ -81,7 +85,7 @@ computeValues(){
 
   if(valuescsv){
     
-      let comptutedtemplateWithArg = '';
+      const computedtemplateWithArg = '';
         valuescsv.split('\n').forEach(line => {
         let templateComputed = templateValuescsv;
         const splittedVals = line.split(';');
@@ -89,15 +93,20 @@ computeValues(){
         splittedVals.forEach( (val, index) => {
           templateComputed = templateComputed.replace('$'+index, val);
         })
-        comptutedtemplateWithArg += templateComputed+'\n';
+        
+        this.myData.resultTemplate.push(templateComputed);
       })
-    this.myData.resultTemplate=comptutedtemplateWithArg;
+    
   }
 }
 
 copyToClipboard(){    
   if(this.myData.resultTemplate){
-    navigator.clipboard.writeText(this.myData.resultTemplate);
+
+    this.myData.resultTemplate.forEach(e => {
+      navigator.clipboard.writeText(e);
+    })
+   
   }
 
 }
